@@ -1,6 +1,40 @@
 
 import { niveles} from "../model/modelo";
+import { vista} from "../view/vista";
+
 // 1seleccionar nivel
+//instanciar nivel
+export class partida{
+    public nivel: niveles;
+    public vie: vista;
+    public estado: boolean;
+    constructor(nivel: niveles, vie:vista){
+        this.nivel=nivel;
+        this.vie=vie;
+        this.estado=true;
+        // 2 iniciar juego-
+        
+    }
+
+    public play():void{
+        // 2 iniciar juego- agregar nuevo paso de la secuencia- mostrar secuencia en pantalla
+        //crear secuencia
+         let nuevoPaso=Math.floor(Math.random()*4)
+         let secuencia:number[]=[];
+         secuencia.push(nuevoPaso)
+         this.vie.mostrarSecuencia(secuencia);
+
+
+
+        //mostrar secu
+
+
+    }
+
+
+}
+ 
+
 
 // 2 iniciar juego- agregar nuevo paso de la secuencia- mostrar secuencia en pantalla
 // 3 seleccionar secuencia -validar entradas segun orden y dentro del tiempo
