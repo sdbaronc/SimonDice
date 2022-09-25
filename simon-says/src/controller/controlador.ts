@@ -1,6 +1,6 @@
 
-import { niveles} from "../model/modelo";
-import { vista} from "../view/vista";
+import { niveles} from "../model/modelo.js";
+import { vista} from "../view/vista.js";
 
 // 1seleccionar nivel
 //instanciar nivel
@@ -12,6 +12,8 @@ export class partida{
         this.nivel=nivel;
         this.vie=vie;
         this.estado=true;
+        this.play();
+        
         // 2 iniciar juego-
         
     }
@@ -23,6 +25,7 @@ export class partida{
          let secuencia:number[]=[];
          secuencia.push(nuevoPaso)
          this.vie.mostrarSecuencia(secuencia);
+         this.vie.addToDisplay('<h1>'+ nuevoPaso.toString() +'</h1>')
 
 
 
@@ -30,6 +33,7 @@ export class partida{
 
 
     }
+   
 
 
 }
