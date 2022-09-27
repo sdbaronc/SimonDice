@@ -1,14 +1,14 @@
 
-import { niveles} from "../model/modelo.js";
+
 import { vista} from "../view/vista.js";
 
 // 1seleccionar nivel
 //instanciar nivel
 export class partida{
-    public nivel: niveles;
+    public nivel: number;
     public vie: vista;
     public estado: boolean;
-    constructor(nivel: niveles, vie:vista){
+    constructor(nivel: number, vie:vista){
         this.nivel=nivel;
         this.vie=vie;
         this.estado=true;
