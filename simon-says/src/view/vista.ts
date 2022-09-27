@@ -1,40 +1,69 @@
 export class vista{
-    private _display: any;
-    private _botonesNiveles: any;
+    private display: any;
+    private botonN: any;
+    private nivelN: string
+    private botonS: any;
 
     constructor() {        
-        this._display = this.getElement('.display');
-        this._botonesNiveles=this.getElement('.boton')    
+        this.display = this.getElement('.display');
+        this.botonN=this.getElement('.botonN'); 
+        this.nivelN="sn"
+        this.botonS=this.getElement('.botonS'); 
     }
 
     private getElement = (selector: string): HTMLElement | null => document.querySelector(selector);
 
-    public set dispaly(dispaly: HTMLElement) {
-        this._display = dispaly;
+    public set SetDisplay(dispaly: HTMLElement) {
+        this.display = dispaly;
     }
 
     public get dispaly() {
-        return this._display;
+        return this.display;
     }
 
-    public set botonNiveles (botonNiveles: HTMLElement) {
-        this._botonesNiveles = botonNiveles;
+    public set SetBotonN (botonN: HTMLElement) {
+        this.botonN = botonN;
     }
 
-    public get botonNiveles() {
-        return this._botonesNiveles;
+    public get GetBotonN() {
+        return this.botonN;
     }
+    
+   
+    public set SetBotonS (botonS: HTMLElement) {
+        this.botonS = botonS;
+    }
+
+    public get GetBotonS() {
+        return this.botonS;
+    }
+
+    public set SetNivel (niveln: string) {
+        this.nivelN = niveln;
+    }
+
+    public get GetNivel() {
+        return this.nivelN;
+    }
+
+
+
+
+
 
     public addToDisplay(content: string): void {
-        this._display.innerHTML += `<p>${content}</p>`
+        this.display.innerHTML += `<p>${content}</p>`
     }
-    public mostrarPaso(paso:number):void{
+    public SelectNivel(nivel:HTMLButtonElement):void{
+        
+        nivel.addEventListener('click',()=>{
+            this.nivelN=nivel.value;
+        });
+      
        
     }
-    public mostrarSecuencia(secuencia: number[]):void{
-
-
-    }
+   
+   
 }
 
 /// 1cargar niveles

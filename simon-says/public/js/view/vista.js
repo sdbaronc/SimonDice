@@ -1,27 +1,42 @@
 export class vista {
     constructor() {
         this.getElement = (selector) => document.querySelector(selector);
-        this._display = this.getElement('.display');
-        this._botonesNiveles = this.getElement('.boton');
+        this.display = this.getElement('.display');
+        this.botonN = this.getElement('.botonN');
+        this.nivelN = "sn";
+        this.botonS = this.getElement('.botonS');
     }
-    set dispaly(dispaly) {
-        this._display = dispaly;
+    set SetDisplay(dispaly) {
+        this.display = dispaly;
     }
     get dispaly() {
-        return this._display;
+        return this.display;
     }
-    set botonNiveles(botonNiveles) {
-        this._botonesNiveles = botonNiveles;
+    set SetBotonN(botonN) {
+        this.botonN = botonN;
     }
-    get botonNiveles() {
-        return this._botonesNiveles;
+    get GetBotonN() {
+        return this.botonN;
+    }
+    set SetBotonS(botonS) {
+        this.botonS = botonS;
+    }
+    get GetBotonS() {
+        return this.botonS;
+    }
+    set SetNivel(niveln) {
+        this.nivelN = niveln;
+    }
+    get GetNivel() {
+        return this.nivelN;
     }
     addToDisplay(content) {
-        this._display.innerHTML += `<p>${content}</p>`;
+        this.display.innerHTML += `<p>${content}</p>`;
     }
-    mostrarPaso(paso) {
-    }
-    mostrarSecuencia(secuencia) {
+    SelectNivel(nivel) {
+        nivel.addEventListener('click', () => {
+            this.nivelN = nivel.value;
+        });
     }
 }
 /// 1cargar niveles

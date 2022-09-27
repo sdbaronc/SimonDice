@@ -12,27 +12,13 @@ export class partida{
         this.nivel=nivel;
         this.vie=vie;
         this.estado=true;
-        this.play();
+        
         
         // 2 iniciar juego-
         
     }
 
-    public play():void{
-        // 2 iniciar juego- agregar nuevo paso de la secuencia- mostrar secuencia en pantalla
-        //crear secuencia
-         let nuevoPaso=Math.floor(Math.random()*4)
-         let secuencia:number[]=[];
-         secuencia.push(nuevoPaso)
-         this.vie.mostrarSecuencia(secuencia);
-         this.vie.addToDisplay('<h1>'+ nuevoPaso.toString() +'</h1>')
-
-
-
-        //mostrar secu
-
-
-    }
+   
    
 
 

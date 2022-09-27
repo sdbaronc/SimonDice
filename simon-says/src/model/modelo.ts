@@ -47,6 +47,11 @@ export class partida{
     public get GetSecuencia(){
         return this.secuencia;
     }
+    public generarPaso():void{
+        let nuevoPaso=Math.floor(Math.random()*4)
+        this.secuencia.push(nuevoPaso)
+        
+    }
     
 
     
