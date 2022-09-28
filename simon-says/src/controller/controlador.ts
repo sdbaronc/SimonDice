@@ -1,11 +1,14 @@
 
-
-
+////1 selecionar nivel
+////2 crear partida con ese nivel
+////3 start partida
+////4generar paso
+///5mostrar paso
+///6recivir paso
 import { vista} from "../view/vista.js";
 import { partida } from "../model/modelo.js";
 
-// 1seleccionar nivel
-//instanciar nivel
+
 export class controladorPartida{
     private partida1: partida;
     private vista1:vista;
@@ -13,17 +16,26 @@ export class controladorPartida{
     constructor(partida1:partida, vista1:vista){
         this.partida1=partida1;
         this.vista1=vista1;
+        this.vista1.obtenerBoton();
+        this.asignaLevel();
+        this.vista1.addToDisplay(this.partida1.GetNivel.toString());
+
     }
     public determinarNivel():number{
+        console.log(this.vista1.GetNivel)
         let nivel : number;
-        if (this.vista1.GetNivel=="dummie"){
+        if (this.vista1.GetNivel=="Dummie"){
             nivel=100;
-        }else if (this.vista1.GetNivel=="junior"){
+        }else if (this.vista1.GetNivel=="Junior"){
             nivel=90;
-        }else{
+        }else if(this.vista1.GetNivel=="Senior"){
             nivel=80;
         }
-        return nivel;}
+        else{
+            nivel=10;
+        }
+        return nivel;
+    }
 
     public asignaLevel():void{
         
@@ -49,12 +61,7 @@ export class controladorPartida{
  
 
 
-// 2 iniciar juego- agregar nuevo paso de la secuencia- mostrar secuencia en pantalla
-// 3 seleccionar secuencia -validar entradas segun orden y dentro del tiempo
-//// 4 repetir 2 y 3 mientras el jugador cumpla las reglas
-//// 5 si pierde revisar si el puntajes está en top 10
-/////// 6 si está en top 10 pedir nombre y agregarlo, bajar a todos una casilla del top
-//repetir
+
 
 
 

@@ -6,12 +6,14 @@ export class vista{
 
     constructor() {        
         this.display = this.getElement('.display');
-        this.botonN=this.getElement('.botonN'); 
+        
         this.nivelN="sn"
-        this.botonS=this.getElement('.botonS'); 
+        this.botonS=this.getElement('.botonS');
+        
     }
 
     private getElement = (selector: string): HTMLElement | null => document.querySelector(selector);
+    
 
     public set SetDisplay(dispaly: HTMLElement) {
         this.display = dispaly;
@@ -54,10 +56,24 @@ export class vista{
     public addToDisplay(content: string): void {
         this.display.innerHTML += `<p>${content}</p>`
     }
-    public SelectNivel(nivel:HTMLButtonElement):void{
+    public obtenerBoton(){
+        const d : HTMLElement= this.getElement('#dummie')! as HTMLElement;
+        const j : HTMLElement= this.getElement('#junior')! as HTMLElement;
+        const s : HTMLElement= this.getElement('#senior')! as HTMLElement;
+        this.SelectNivel(d);
+        this.SelectNivel(j);
+        this.SelectNivel(s);
+        
+       
+        
+
+    }
+    public SelectNivel(nivel:HTMLElement):void{
         
         nivel.addEventListener('click',()=>{
-            this.nivelN=nivel.value;
+            console.log(nivel);
+            this.nivelN=nivel.textContent!;
+            this.botonN=nivel;
         });
       
        
