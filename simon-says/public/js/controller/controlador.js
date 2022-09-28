@@ -1,11 +1,25 @@
 // 1seleccionar nivel
 //instanciar nivel
-export class partida {
-    constructor(nivel, vie) {
-        this.nivel = nivel;
-        this.vie = vie;
-        this.estado = true;
-        // 2 iniciar juego-
+export class controladorPartida {
+    constructor(partida1, vista1) {
+        this.partida1 = partida1;
+        this.vista1 = vista1;
+    }
+    determinarNivel() {
+        let nivel;
+        if (this.vista1.GetNivel == "dummie") {
+            nivel = 100;
+        }
+        else if (this.vista1.GetNivel == "junior") {
+            nivel = 90;
+        }
+        else {
+            nivel = 80;
+        }
+        return nivel;
+    }
+    asignaLevel() {
+        this.partida1.SetNivel(this.determinarNivel());
     }
 }
 // 2 iniciar juego- agregar nuevo paso de la secuencia- mostrar secuencia en pantalla

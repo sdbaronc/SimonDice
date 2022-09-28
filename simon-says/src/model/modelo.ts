@@ -1,7 +1,5 @@
 
 
-
-
 export class puntajeTop{
     public nombre:string;
     public nivel: number;
@@ -20,13 +18,13 @@ export class partida{
     private estado: boolean;
     private secuencia: number[];
 
-    constructor(nivel:number){
-        this.nivel=nivel;
+    constructor(){
+        this.nivel=-1;
         this.estado=true;
         this.secuencia=[];
 
     }
-    public set SetNivel (nivel:number){
+    public  SetNivel (nivel: number){
         this.nivel=nivel;
 
     }

@@ -1,6 +1,7 @@
 
 import { vista } from "./view/vista.js";
-import { partida } from "./controller/controlador.js";
+import { controladorPartida } from "./controller/controlador.js";
+
 
 
 

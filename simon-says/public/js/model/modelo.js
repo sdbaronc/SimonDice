@@ -6,12 +6,12 @@ export class puntajeTop {
     }
 }
 export class partida {
-    constructor(nivel) {
-        this.nivel = nivel;
+    constructor() {
+        this.nivel = -1;
         this.estado = true;
         this.secuencia = [];
     }
-    set SetNivel(nivel) {
+    SetNivel(nivel) {
         this.nivel = nivel;
     }
     get GetNivel() {

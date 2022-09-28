@@ -1,22 +1,45 @@
 
 
+
 import { vista} from "../view/vista.js";
+import { partida } from "../model/modelo.js";
 
 // 1seleccionar nivel
 //instanciar nivel
-export class partida{
-    public nivel: number;
-    public vie: vista;
-    public estado: boolean;
-    constructor(nivel: number, vie:vista){
-        this.nivel=nivel;
-        this.vie=vie;
-        this.estado=true;
+export class controladorPartida{
+    private partida1: partida;
+    private vista1:vista;
+
+    constructor(partida1:partida, vista1:vista){
+        this.partida1=partida1;
+        this.vista1=vista1;
+    }
+    public determinarNivel():number{
+        let nivel : number;
+        if (this.vista1.GetNivel=="dummie"){
+            nivel=100;
+        }else if (this.vista1.GetNivel=="junior"){
+            nivel=90;
+        }else{
+            nivel=80;
+        }
+        return nivel;}
+
+    public asignaLevel():void{
+        
+        this.partida1.SetNivel(this.determinarNivel());
+        
+        
+    }
+    
+
+    
+    
         
         
         // 2 iniciar juego-
         
-    }
+    
 
    
    
