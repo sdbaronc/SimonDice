@@ -2,8 +2,11 @@ export class vista {
     constructor() {
         this.getElement = (selector) => document.querySelector(selector);
         this.display = this.getElement('.display');
+        this.botond = this.getElement('#dummie');
+        this.botonj = this.getElement('#junior');
+        this.botons = this.getElement('#senior');
         this.nivelN = "sn";
-        this.botonS = this.getElement('.botonS');
+        this.botonI = this.getElement('.btn');
     }
     set SetDisplay(dispaly) {
         this.display = dispaly;
@@ -11,41 +14,38 @@ export class vista {
     get dispaly() {
         return this.display;
     }
-    set SetBotonN(botonN) {
-        this.botonN = botonN;
+    set SetBotond(botond) {
+        this.botond = botond;
     }
-    get GetBotonN() {
-        return this.botonN;
+    get GetBotond() {
+        return this.botond;
     }
-    set SetBotonS(botonS) {
-        this.botonS = botonS;
+    set SetBotonj(botonj) {
+        this.botonj = botonj;
     }
-    get GetBotonS() {
-        return this.botonS;
+    get GetBotonj() {
+        return this.botonj;
     }
-    set SetNivel(niveln) {
+    set SetBotons(botons) {
+        this.botons = botons;
+    }
+    get GetBotons() {
+        return this.botons;
+    }
+    set SetBotonI(botonS) {
+        this.botonI = botonS;
+    }
+    get GetBotonI() {
+        return this.botonI;
+    }
+    SetNivel(niveln) {
         this.nivelN = niveln;
     }
     get GetNivel() {
         return this.nivelN;
     }
     addToDisplay(content) {
-        this.display.innerHTML += `<p>${content}</p>`;
-    }
-    obtenerBoton() {
-        const d = this.getElement('#dummie');
-        const j = this.getElement('#junior');
-        const s = this.getElement('#senior');
-        this.SelectNivel(d);
-        this.SelectNivel(j);
-        this.SelectNivel(s);
-    }
-    SelectNivel(nivel) {
-        nivel.addEventListener('click', () => {
-            console.log(nivel);
-            this.nivelN = nivel.textContent;
-            this.botonN = nivel;
-        });
+        this.display.innerHTML = `<p>${content}</p>`;
     }
 }
 /// 1cargar niveles

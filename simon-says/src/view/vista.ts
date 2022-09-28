@@ -1,14 +1,19 @@
 export class vista{
     private display: any;
-    private botonN: any;
+    private botond: any;
+    private botonj: any;
+    private botons: any;
     private nivelN: string
-    private botonS: any;
+    private botonI: any;
 
     constructor() {        
         this.display = this.getElement('.display');
-        
+        this.botond=this.getElement('#dummie')
+        this.botonj=this.getElement('#junior')
+        this.botons=this.getElement('#senior')
         this.nivelN="sn"
-        this.botonS=this.getElement('.botonS');
+        this.botonI=this.getElement('.btn');
+        
         
     }
 
@@ -23,24 +28,37 @@ export class vista{
         return this.display;
     }
 
-    public set SetBotonN (botonN: HTMLElement) {
-        this.botonN = botonN;
+    public set SetBotond (botond: HTMLElement) {
+        this.botond = botond;
     }
 
-    public get GetBotonN() {
-        return this.botonN;
+    public get GetBotond() {
+        return this.botond;
     }
-    
+    public set SetBotonj (botonj: HTMLElement) {
+        this.botonj = botonj;
+    }
+
+    public get GetBotonj() {
+        return this.botonj;
+    }
+    public set SetBotons (botons: HTMLElement) {
+        this.botons = botons;
+    }
+
+    public get GetBotons() {
+        return this.botons;
+    }
    
-    public set SetBotonS (botonS: HTMLElement) {
-        this.botonS = botonS;
+    public set SetBotonI (botonS: HTMLElement) {
+        this.botonI = botonS;
     }
 
-    public get GetBotonS() {
-        return this.botonS;
+    public get GetBotonI() {
+        return this.botonI;
     }
 
-    public set SetNivel (niveln: string) {
+    public  SetNivel (niveln: string) {
         this.nivelN = niveln;
     }
 
@@ -54,30 +72,19 @@ export class vista{
 
 
     public addToDisplay(content: string): void {
-        this.display.innerHTML += `<p>${content}</p>`
+        this.display.innerHTML = `<p>${content}</p>`
     }
-    public obtenerBoton(){
-        const d : HTMLElement= this.getElement('#dummie')! as HTMLElement;
-        const j : HTMLElement= this.getElement('#junior')! as HTMLElement;
-        const s : HTMLElement= this.getElement('#senior')! as HTMLElement;
-        this.SelectNivel(d);
-        this.SelectNivel(j);
-        this.SelectNivel(s);
-        
-       
-        
-
-    }
-    public SelectNivel(nivel:HTMLElement):void{
+    
+    /*public SelectNivel(nivel:HTMLElement):void{
         
         nivel.addEventListener('click',()=>{
-            console.log(nivel);
+            
             this.nivelN=nivel.textContent!;
             this.botonN=nivel;
         });
       
        
-    }
+    }*/
    
    
 }
