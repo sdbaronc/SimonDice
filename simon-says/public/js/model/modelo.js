@@ -32,4 +32,7 @@ export class partida {
     vaciarSeq() {
         this.secuencia = [];
     }
+    modiEstado(estado) {
+        this.estado = estado;
+    }
 }

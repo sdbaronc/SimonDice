@@ -51,6 +51,10 @@ export class partida{
     public vaciarSeq(){
         this.secuencia=[];
     }
+    
+    public modiEstado(estado:boolean) {
+        this.estado=estado;
+    }
 
     
 }

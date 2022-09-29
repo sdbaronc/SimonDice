@@ -52,6 +52,8 @@ export class controladorPartida {
                 this.vista1.addToDisplay("iniciaste la partida en nivel : ");
                 this.calSecuencia();
                 this.mostrarSecuencia();
+                this.recibeSeq();
+                this.vista1.GetBotonI.style.display = "block";
             }
             //mientras la partidasté true
             //cacleq
@@ -72,6 +74,7 @@ export class controladorPartida {
         console.log(this.partida1.GetSecuencia);
     }
     mostrarSecuencia() {
+        this.vista1.GetBotonI.style.display = "none";
         let conut = 0;
         let inter = setInterval(() => {
             this.mostrarPaso(this.partida1.GetSecuencia[conut]);
@@ -80,7 +83,6 @@ export class controladorPartida {
             }
             conut = conut + 1;
         }, this.partida1.GetNivel);
-        ///recorre la secuencia y muestracadapaso()
     }
     mostrarPaso(paso) {
         ///segun el numero selecciona un boton para mostrar un paso con un sonido
@@ -118,5 +120,49 @@ export class controladorPartida {
                 break;
             }
         }
+    }
+    validarPaso(boton, paso) {
+        let vb = false;
+        if (boton.textContent == "G" && paso == 0) {
+            vb = true;
+        }
+        else if (boton.textContent == "R" && paso == 1) {
+            vb = true;
+        }
+        else if (boton.textContent == "Y" && paso == 2) {
+            vb = true;
+        }
+        else if (boton.textContent == "B" && paso == 3) {
+            vb = true;
+        }
+        return vb;
+    }
+    recibeSeq() {
+        this.partida1.GetSecuencia.forEach(paso => {
+            this.vista1.GetBotonG.addEventListener("click", () => {
+                this.s0.play();
+                if (!this.validarPaso(this.vista1.GetBotonG, paso)) {
+                    this.partida1.modiEstado(false);
+                }
+            });
+            this.vista1.GetBotonR.addEventListener("click", () => {
+                this.s1.play();
+                if (!this.validarPaso(this.vista1.GetBotonR, paso)) {
+                    this.partida1.modiEstado(false);
+                }
+            });
+            this.vista1.GetBotonY.addEventListener("click", () => {
+                this.s2.play();
+                if (!this.validarPaso(this.vista1.GetBotonY, paso)) {
+                    this.partida1.modiEstado(false);
+                }
+            });
+            this.vista1.GetBotonB.addEventListener("click", () => {
+                this.s3.play();
+                if (!this.validarPaso(this.vista1.GetBotonB, paso)) {
+                    this.partida1.modiEstado(false);
+                }
+            });
+        });
     }
 }
