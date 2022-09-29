@@ -11,6 +11,7 @@ export class controladorPartida {
     private s2: HTMLAudioElement;
     private s3: HTMLAudioElement;
     private ers: HTMLAudioElement;
+    private con: number;
 
 
     constructor(partida1: partida, vista1: vista) {
@@ -24,12 +25,15 @@ export class controladorPartida {
         this.s2 = document.getElementById("s2") as HTMLAudioElement;
         this.s3 = document.getElementById("s3") as HTMLAudioElement;
         this.ers = document.getElementById("ere") as HTMLAudioElement;
+        this.con = 0;
+        
 
 
 
 
     }
     public determinarNivel(): number {
+
 
         let nivel: number;
         if (this.vista1.GetNivel == "Dummie") {
@@ -67,6 +71,7 @@ export class controladorPartida {
 
     }
     public ativarInicio() {
+        
         this.vista1.GetBotonI.addEventListener("click", () => {
             //console.log(this.partida1.GetNivel)
             if (this.partida1.GetNivel == -1) {
@@ -74,39 +79,46 @@ export class controladorPartida {
             }
             else {
                 this.vista1.addToDisplay("iniciaste la partida en nivel : ");
+                this.vista1.GetBotonI.style.display = "none";
                 this.calSecuencia();
                 this.mostrarSecuencia();
-                this.recibeSeq();
-                this.vista1.GetBotonI.style.display = "block"
+                
+                
+                
+
             }
 
             //mientras la partidasté true
 
-            //cacleq
+            //cacle
             //muestreseq
             //reciba seq
 
 
 
         })
+        this.recibeSeq();
+        
+        
     }
     public calSecuencia() {
         ///genera una nueva secuencia
         let n: number = this.partida1.GetSecuencia.length + 1;
         console.log(n)
-        let vacia: number[] = [];
+        
         this.partida1.vaciarSeq();
+        
         for (let i: number = 0; i < n; i++) {
             let npaso: number = Math.floor(Math.random() * 4);
             this.partida1.GetSecuencia.push(npaso);
 
         }
-        console.log(this.partida1.GetSecuencia)
+        //console.log(this.partida1.GetSecuencia)
 
 
     }
     public mostrarSecuencia() {
-        this.vista1.GetBotonI.style.display = "none"
+
         let conut: number = 0;
 
 
@@ -116,7 +128,7 @@ export class controladorPartida {
             this.mostrarPaso(this.partida1.GetSecuencia[conut])
             if (conut == this.partida1.GetSecuencia.length) {
                 clearInterval(inter);
-                
+
 
             }
             conut = conut + 1;
@@ -214,47 +226,98 @@ export class controladorPartida {
 
     }
     public recibeSeq() {
-        this.partida1.GetSecuencia.forEach(paso => {
-            this.vista1.GetBotonG.addEventListener("click",()=>{
+        console.log(this.partida1.GetSecuencia)
+        
+            this.vista1.GetBotonG.addEventListener("click", () => {
                 this.s0.play();
-                if(!this.validarPaso(this.vista1.GetBotonG,paso)){
-                    
+                console.log(this.partida1.GetEstado)
+                if (!this.validarPaso(this.vista1.GetBotonG, this.partida1.GetSecuencia[this.con])) {
+
                     this.partida1.modiEstado(false);
+                    console.log(this.partida1.GetEstado)
+                } else {
+                    
+                    this.con++;
+                    if (this.con == this.partida1.GetSecuencia.length) {
+                        this.vista1.GetBotonI.style.display = "block";
+                        this.con=0;
+
+
+                    }
+                    console.log(this.partida1.GetEstado)
+
+
                 }
-                
+
             });
 
-            this.vista1.GetBotonR.addEventListener("click",()=>{
+            this.vista1.GetBotonR.addEventListener("click", () => {
                 this.s1.play();
-                if(!this.validarPaso(this.vista1.GetBotonR,paso)){
-                    
-                    this.partida1.modiEstado(false);
+                console.log(this.partida1.GetEstado)
+                if (!this.validarPaso(this.vista1.GetBotonR, this.partida1.GetSecuencia[this.con])) {
 
+                    this.partida1.modiEstado(false);
+                    console.log(this.partida1.GetEstado)
+
+                } else {
+                    this.con++;
+                    if (this.con == this.partida1.GetSecuencia.length) {
+                        this.vista1.GetBotonI.style.display = "block";
+                        this.con=0;
+
+                    }
+                    console.log(this.partida1.GetEstado)
                 }
-                
+
+
             });
-            this.vista1.GetBotonY.addEventListener("click",()=>{
+            this.vista1.GetBotonY.addEventListener("click", () => {
                 this.s2.play();
-                if(!this.validarPaso(this.vista1.GetBotonY,paso)){
+                console.log(this.partida1.GetEstado)
+                if (!this.validarPaso(this.vista1.GetBotonY, this.partida1.GetSecuencia[this.con])) {
                     this.partida1.modiEstado(false);
+                    console.log(this.partida1.GetEstado)
+
+                } else {
+                    
+                    this.con++;
+                    if (this.con == this.partida1.GetSecuencia.length) {
+                        this.vista1.GetBotonI.style.display = "block";
+                        this.con=0;
+
+                    }
+                    console.log(this.partida1.GetEstado)
 
                 }
-                
+
             });
-            this.vista1.GetBotonB.addEventListener("click",()=>{
+            this.vista1.GetBotonB.addEventListener("click", () => {
                 this.s3.play();
-                if(!this.validarPaso(this.vista1.GetBotonB,paso)){
+                console.log(this.partida1.GetEstado)
+                if (!this.validarPaso(this.vista1.GetBotonB, this.partida1.GetSecuencia[this.con])) {
                     this.partida1.modiEstado(false);
-                    
+                    console.log(this.partida1.GetEstado)
+
+                } else {
+                    this.con++;
+                    if (this.con == this.partida1.GetSecuencia.length) {
+                        this.vista1.GetBotonI.style.display = "block";
+                        this.con=0;
+
+                    }
+                    console.log(this.partida1.GetEstado)
+
                 }
-                
-            });
+
             
 
 
 
 
+
         });
+        //this.calSecuencia();
+        //this.mostrarSecuencia();
 
 
     }

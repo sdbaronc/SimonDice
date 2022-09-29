@@ -9,6 +9,7 @@ export class controladorPartida {
         this.s2 = document.getElementById("s2");
         this.s3 = document.getElementById("s3");
         this.ers = document.getElementById("ere");
+        this.con = 0;
     }
     determinarNivel() {
         let nivel;
@@ -50,31 +51,29 @@ export class controladorPartida {
             }
             else {
                 this.vista1.addToDisplay("iniciaste la partida en nivel : ");
+                this.vista1.GetBotonI.style.display = "none";
                 this.calSecuencia();
                 this.mostrarSecuencia();
-                this.recibeSeq();
-                this.vista1.GetBotonI.style.display = "block";
             }
             //mientras la partidasté true
-            //cacleq
+            //cacle
             //muestreseq
             //reciba seq
         });
+        this.recibeSeq();
     }
     calSecuencia() {
         ///genera una nueva secuencia
         let n = this.partida1.GetSecuencia.length + 1;
         console.log(n);
-        let vacia = [];
         this.partida1.vaciarSeq();
         for (let i = 0; i < n; i++) {
             let npaso = Math.floor(Math.random() * 4);
             this.partida1.GetSecuencia.push(npaso);
         }
-        console.log(this.partida1.GetSecuencia);
+        //console.log(this.partida1.GetSecuencia)
     }
     mostrarSecuencia() {
-        this.vista1.GetBotonI.style.display = "none";
         let conut = 0;
         let inter = setInterval(() => {
             this.mostrarPaso(this.partida1.GetSecuencia[conut]);
@@ -138,31 +137,72 @@ export class controladorPartida {
         return vb;
     }
     recibeSeq() {
-        this.partida1.GetSecuencia.forEach(paso => {
-            this.vista1.GetBotonG.addEventListener("click", () => {
-                this.s0.play();
-                if (!this.validarPaso(this.vista1.GetBotonG, paso)) {
-                    this.partida1.modiEstado(false);
+        console.log(this.partida1.GetSecuencia);
+        this.vista1.GetBotonG.addEventListener("click", () => {
+            this.s0.play();
+            console.log(this.partida1.GetEstado);
+            if (!this.validarPaso(this.vista1.GetBotonG, this.partida1.GetSecuencia[this.con])) {
+                this.partida1.modiEstado(false);
+                console.log(this.partida1.GetEstado);
+            }
+            else {
+                this.con++;
+                if (this.con == this.partida1.GetSecuencia.length) {
+                    this.vista1.GetBotonI.style.display = "block";
+                    this.con = 0;
                 }
-            });
-            this.vista1.GetBotonR.addEventListener("click", () => {
-                this.s1.play();
-                if (!this.validarPaso(this.vista1.GetBotonR, paso)) {
-                    this.partida1.modiEstado(false);
-                }
-            });
-            this.vista1.GetBotonY.addEventListener("click", () => {
-                this.s2.play();
-                if (!this.validarPaso(this.vista1.GetBotonY, paso)) {
-                    this.partida1.modiEstado(false);
-                }
-            });
-            this.vista1.GetBotonB.addEventListener("click", () => {
-                this.s3.play();
-                if (!this.validarPaso(this.vista1.GetBotonB, paso)) {
-                    this.partida1.modiEstado(false);
-                }
-            });
+                console.log(this.partida1.GetEstado);
+            }
         });
+        this.vista1.GetBotonR.addEventListener("click", () => {
+            this.s1.play();
+            console.log(this.partida1.GetEstado);
+            if (!this.validarPaso(this.vista1.GetBotonR, this.partida1.GetSecuencia[this.con])) {
+                this.partida1.modiEstado(false);
+                console.log(this.partida1.GetEstado);
+            }
+            else {
+                this.con++;
+                if (this.con == this.partida1.GetSecuencia.length) {
+                    this.vista1.GetBotonI.style.display = "block";
+                    this.con = 0;
+                }
+                console.log(this.partida1.GetEstado);
+            }
+        });
+        this.vista1.GetBotonY.addEventListener("click", () => {
+            this.s2.play();
+            console.log(this.partida1.GetEstado);
+            if (!this.validarPaso(this.vista1.GetBotonY, this.partida1.GetSecuencia[this.con])) {
+                this.partida1.modiEstado(false);
+                console.log(this.partida1.GetEstado);
+            }
+            else {
+                this.con++;
+                if (this.con == this.partida1.GetSecuencia.length) {
+                    this.vista1.GetBotonI.style.display = "block";
+                    this.con = 0;
+                }
+                console.log(this.partida1.GetEstado);
+            }
+        });
+        this.vista1.GetBotonB.addEventListener("click", () => {
+            this.s3.play();
+            console.log(this.partida1.GetEstado);
+            if (!this.validarPaso(this.vista1.GetBotonB, this.partida1.GetSecuencia[this.con])) {
+                this.partida1.modiEstado(false);
+                console.log(this.partida1.GetEstado);
+            }
+            else {
+                this.con++;
+                if (this.con == this.partida1.GetSecuencia.length) {
+                    this.vista1.GetBotonI.style.display = "block";
+                    this.con = 0;
+                }
+                console.log(this.partida1.GetEstado);
+            }
+        });
+        //this.calSecuencia();
+        //this.mostrarSecuencia();
     }
 }

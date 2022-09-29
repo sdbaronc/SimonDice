@@ -13,6 +13,7 @@ export class puntajeTop{
 
 
     }
+    
 }
 export class partida{
     private nivel: number;
