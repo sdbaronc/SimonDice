@@ -23,10 +23,13 @@ export class partida {
     get GetEstado() {
         return this.estado;
     }
-    SetSecuencia(secuencia) {
+    set SetSecuencia(secuencia) {
         this.secuencia = secuencia;
     }
     get GetSecuencia() {
         return this.secuencia;
+    }
+    vaciarSeq() {
+        this.secuencia = [];
     }
 }

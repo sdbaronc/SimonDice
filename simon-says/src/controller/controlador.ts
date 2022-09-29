@@ -6,12 +6,24 @@ import { partida } from "../model/modelo.js";
 export class controladorPartida{
     private partida1: partida;
     private vista1:vista;
+    private s0:HTMLAudioElement;
+    private s1:HTMLAudioElement;
+    private s2:HTMLAudioElement;
+    private s3:HTMLAudioElement;
+    private ers:HTMLAudioElement;
+    
 
     constructor(partida1:partida, vista1:vista){
+        
         this.partida1=partida1;
         this.vista1=vista1;
         this.ativarInicio();
         this.obtenerNivel();
+         this.s0= document.getElementById("s0") as HTMLAudioElement ;
+         this.s1= document.getElementById("s1") as HTMLAudioElement ;
+         this.s2= document.getElementById("s2") as HTMLAudioElement ;
+         this.s3= document.getElementById("s3") as HTMLAudioElement ;
+         this.ers= document.getElementById("ere") as HTMLAudioElement ;
         
         
         
@@ -21,11 +33,11 @@ export class controladorPartida{
         
         let nivel : number;
         if (this.vista1.GetNivel=="Dummie"){
-            nivel=100;
+            nivel=1000;
         }else if (this.vista1.GetNivel=="Junior"){
-            nivel=90;
+            nivel=900;
         }else if(this.vista1.GetNivel=="Senior"){
-            nivel=80;
+            nivel=800;
         }
         else{
             nivel=10;
@@ -50,19 +62,20 @@ export class controladorPartida{
     }
     public obtenerContenido(elemento:HTMLElement){
         this.vista1.SetNivel(elemento.textContent!);
-        console.log(this.vista1.GetNivel);
+        //console.log(this.vista1.GetNivel);
         this.asignaLevel();
         
     }
     public ativarInicio(){
         this.vista1.GetBotonI.addEventListener("click",()=>{
-        console.log(this.partida1.GetNivel)
+        //console.log(this.partida1.GetNivel)
         if(this.partida1.GetNivel==-1){
             this.vista1.addToDisplay("Debe seleccionar un nivel")
         }
         else{
             this.vista1.addToDisplay("iniciaste la partida en nivel : ");
-            this.calSecuencia;
+            this.calSecuencia();
+            this.mostrarSecuencia();
         }
             
             //mientras la partidasté true
@@ -78,22 +91,108 @@ export class controladorPartida{
     public calSecuencia(){
         ///genera una nueva secuencia
         let n : number= this.partida1.GetSecuencia.length + 1;
+        console.log(n)
         let vacia:number[]=[];
-        this.partida1.SetSecuencia(vacia);
-        for(let i:number=0;i<=n;i++){
-            let npaso :number=Math.random()*3;
+        this.partida1.vaciarSeq();
+        for(let i:number=0;i<n;i++){
+            let npaso :number=Math.floor(Math.random()*4);
             this.partida1.GetSecuencia.push(npaso);
 
         }
+        console.log(this.partida1.GetSecuencia)
 
 
     }
     public mostrarSecuencia(){
+        let conut: number=0;
+       
+            
+            
+            let inter  = setInterval(()=>{
+                
+                this.mostrarPaso(this.partida1.GetSecuencia[conut])
+                if(conut==this.partida1.GetSecuencia.length){
+                    clearInterval(inter);
+                    
+                }
+                conut =conut+1;
+                
+
+
+            },this.partida1.GetNivel)
+            
+
+             
+        
+    
         ///recorre la secuencia y muestracadapaso()
     }
     public mostrarPaso(paso:number){
         ///segun el numero selecciona un boton para mostrar un paso con un sonido
+        switch(paso){
+            case 0:{
+                this.s0.play()
+                
+                    this.vista1.GetBotonG.style.background="rgb(0, 255, 0)";
+                    
+                    
+                    setTimeout(()=>{
+                        this.vista1.GetBotonG.style.background="rgb(100, 190, 100)";
+                    },150);
+                    
+                
+                
+                
+                break;
+            }
+            case 1:{
+                this.s1.play();
+                
+                    this.vista1.GetBotonR.style.background="rgb(255, 0, 0)";
+                    
+                    setTimeout(()=>{
+                        
+                        this.vista1.GetBotonR.style.background="rgb(188, 100, 90)";
+                    },150);
+                    
+                
+                
+                
+                break;
+            }
+            case 2:{
+                this.s2.play();
+                
+                    this.vista1.GetBotonY.style.background="rgb(255, 255, 0)";
+                    
+                    setTimeout(()=>{
+                        
+                        this.vista1.GetBotonY.style.background="rgb(190, 190, 70)";
+                    },150);
+                    
+                
+                
+                
+                break;
+            }
+            case 3:{
+                this.s3.play();
+                
+                    this.vista1.GetBotonB.style.background="rgb(0, 0, 255)";
+                    
+                    setTimeout(()=>{
+                        
+                        this.vista1.GetBotonB.style.background="rgb(37, 37, 100)";
+                    },150);
+                    
+                
+                
+                
+                break;
+            }
+        }
     }
+    
     
 
     

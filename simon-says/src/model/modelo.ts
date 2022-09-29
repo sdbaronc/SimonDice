@@ -39,7 +39,7 @@ export class partida{
     public get GetEstado(){
         return this.estado;
     }
-    public  SetSecuencia (secuencia:number[]){
+    public set SetSecuencia (secuencia:number[]){
         this.secuencia=secuencia;
 
     }
@@ -48,7 +48,9 @@ export class partida{
     }
    
     
-    
+    public vaciarSeq(){
+        this.secuencia=[];
+    }
 
     
 }

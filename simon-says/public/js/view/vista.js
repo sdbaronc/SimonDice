@@ -48,6 +48,30 @@ export class vista {
     get GetNivel() {
         return this.nivelN;
     }
+    set SetBotonG(botons) {
+        this.botonG = botons;
+    }
+    get GetBotonG() {
+        return this.botonG;
+    }
+    set SetBotonR(botons) {
+        this.botonR = botons;
+    }
+    get GetBotonR() {
+        return this.botonR;
+    }
+    set SetBotonY(botons) {
+        this.botonY = botons;
+    }
+    get GetBotonY() {
+        return this.botonY;
+    }
+    set SetBotonB(botons) {
+        this.botonB = botons;
+    }
+    get GetBotonB() {
+        return this.botonB;
+    }
     addToDisplay(content) {
         this.display.innerHTML = '<p>' + content + '</p>';
     }

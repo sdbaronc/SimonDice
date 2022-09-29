@@ -74,6 +74,34 @@ export class vista{
     public get GetNivel() {
         return this.nivelN;
     }
+    public set SetBotonG (botons: HTMLElement) {
+        this.botonG = botons;
+    }
+
+    public get GetBotonG() {
+        return this.botonG;
+    }
+    public set SetBotonR (botons: HTMLElement) {
+        this.botonR = botons;
+    }
+
+    public get GetBotonR() {
+        return this.botonR;
+    }
+    public set SetBotonY (botons: HTMLElement) {
+        this.botonY = botons;
+    }
+
+    public get GetBotonY() {
+        return this.botonY;
+    }
+    public set SetBotonB (botons: HTMLElement) {
+        this.botonB = botons;
+    }
+
+    public get GetBotonB() {
+        return this.botonB;
+    }
 
 
 
