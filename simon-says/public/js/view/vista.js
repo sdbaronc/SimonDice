@@ -7,6 +7,10 @@ export class vista {
         this.botons = this.getElement('#senior');
         this.nivelN = "sn";
         this.botonI = this.getElement('.btn');
+        this.botonG = this.getElement('#g');
+        this.botonR = this.getElement('#r');
+        this.botonY = this.getElement('#y');
+        this.botonB = this.getElement('#b');
     }
     set SetDisplay(dispaly) {
         this.display = dispaly;
@@ -45,7 +49,7 @@ export class vista {
         return this.nivelN;
     }
     addToDisplay(content) {
-        this.display.innerHTML = `<p>${content}</p>`;
+        this.display.innerHTML = '<p>' + content + '</p>';
     }
 }
 /// 1cargar niveles

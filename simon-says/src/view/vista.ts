@@ -1,3 +1,4 @@
+
 export class vista{
     private display: any;
     private botond: any;
@@ -5,6 +6,10 @@ export class vista{
     private botons: any;
     private nivelN: string
     private botonI: any;
+    private botonG: any;
+    private botonR: any;
+    private botonY: any;
+    private botonB: any;
 
     constructor() {        
         this.display = this.getElement('.display');
@@ -13,6 +18,10 @@ export class vista{
         this.botons=this.getElement('#senior')
         this.nivelN="sn"
         this.botonI=this.getElement('.btn');
+        this.botonG=this.getElement('#g');
+        this.botonR=this.getElement('#r');
+        this.botonY=this.getElement('#y');
+        this.botonB=this.getElement('#b');
         
         
     }
@@ -72,7 +81,7 @@ export class vista{
 
 
     public addToDisplay(content: string): void {
-        this.display.innerHTML = `<p>${content}</p>`
+        this.display.innerHTML = '<p>'+content+'</p>'
     }
     
     /*public SelectNivel(nivel:HTMLElement):void{

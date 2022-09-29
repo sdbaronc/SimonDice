@@ -23,14 +23,10 @@ export class partida {
     get GetEstado() {
         return this.estado;
     }
-    set SetSecuencia(secuencia) {
+    SetSecuencia(secuencia) {
         this.secuencia = secuencia;
     }
     get GetSecuencia() {
         return this.secuencia;
-    }
-    generarPaso() {
-        let nuevoPaso = Math.floor(Math.random() * 4);
-        this.secuencia.push(nuevoPaso);
     }
 }

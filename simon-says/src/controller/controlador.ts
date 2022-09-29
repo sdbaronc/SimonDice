@@ -1,10 +1,4 @@
 
-////1 selecionar nivel
-////2 crear partida con ese nivel
-////3 start partida
-////4generar paso
-///5mostrar paso
-///6recivir paso
 import { vista} from "../view/vista.js";
 import { partida } from "../model/modelo.js";
 
@@ -62,8 +56,43 @@ export class controladorPartida{
     }
     public ativarInicio(){
         this.vista1.GetBotonI.addEventListener("click",()=>{
+        console.log(this.partida1.GetNivel)
+        if(this.partida1.GetNivel==-1){
+            this.vista1.addToDisplay("Debe seleccionar un nivel")
+        }
+        else{
             this.vista1.addToDisplay("iniciaste la partida en nivel : ");
+            this.calSecuencia;
+        }
+            
+            //mientras la partidasté true
+
+                    //cacleq
+                    //muestreseq
+                    //reciba seq
+            
+
+
         })
+    }
+    public calSecuencia(){
+        ///genera una nueva secuencia
+        let n : number= this.partida1.GetSecuencia.length + 1;
+        let vacia:number[]=[];
+        this.partida1.SetSecuencia(vacia);
+        for(let i:number=0;i<=n;i++){
+            let npaso :number=Math.random()*3;
+            this.partida1.GetSecuencia.push(npaso);
+
+        }
+
+
+    }
+    public mostrarSecuencia(){
+        ///recorre la secuencia y muestracadapaso()
+    }
+    public mostrarPaso(paso:number){
+        ///segun el numero selecciona un boton para mostrar un paso con un sonido
     }
     
 
@@ -80,11 +109,5 @@ export class controladorPartida{
 
 
 }
- 
-
-
-
-
-
 
 

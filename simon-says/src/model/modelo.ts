@@ -1,5 +1,6 @@
 
 
+
 export class puntajeTop{
     public nombre:string;
     public nivel: number;
@@ -38,18 +39,15 @@ export class partida{
     public get GetEstado(){
         return this.estado;
     }
-    public set SetSecuencia (secuencia:number[]){
+    public  SetSecuencia (secuencia:number[]){
         this.secuencia=secuencia;
 
     }
     public get GetSecuencia(){
         return this.secuencia;
     }
-    public generarPaso():void{
-        let nuevoPaso=Math.floor(Math.random()*4)
-        this.secuencia.push(nuevoPaso)
-        
-    }
+   
+    
     
 
     
