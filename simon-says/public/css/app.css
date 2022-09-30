@@ -117,3 +117,33 @@ border: none;
 .boton-nivel:hover{
 background-color: aliceblue;
 }
+.clmodal{
+    width: 80%;
+    
+    margin: auto;
+}
+.modal{
+    display: none;
+    color: black;
+    background-color: #ffffffbd;
+    
+    position:fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    opacity: 0;
+    pointer-events: none;
+    
+}
+.modal--show{
+    opacity: 1;
+    pointer-events: unset;
+
+}
+.puntos{
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: 20px 20px 20px 20px 20px 20px 20px 20px 20px 20px 20px;
+}

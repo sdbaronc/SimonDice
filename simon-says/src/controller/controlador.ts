@@ -1,6 +1,7 @@
 
 import { vista } from "../view/vista.js";
 import { partida } from "../model/modelo.js";
+import { puntajeTop } from "../model/modelo.js";
 
 
 export class controladorPartida {
@@ -12,6 +13,7 @@ export class controladorPartida {
     private s3: HTMLAudioElement;
     private ers: HTMLAudioElement;
     private con: number;
+    private pos:number;
 
 
     constructor(partida1: partida, vista1: vista) {
@@ -26,6 +28,7 @@ export class controladorPartida {
         this.s3 = document.getElementById("s3") as HTMLAudioElement;
         this.ers = document.getElementById("ere") as HTMLAudioElement;
         this.con = 0;
+        this.pos=-1;
         
 
 
@@ -104,7 +107,7 @@ export class controladorPartida {
     public calSecuencia() {
         ///genera una nueva secuencia
         let n: number = this.partida1.GetSecuencia.length + 1;
-        console.log(n)
+        
         
         this.partida1.vaciarSeq();
         
@@ -226,15 +229,25 @@ export class controladorPartida {
 
     }
     public recibeSeq() {
-        console.log(this.partida1.GetSecuencia)
+        
         
             this.vista1.GetBotonG.addEventListener("click", () => {
                 this.s0.play();
-                console.log(this.partida1.GetEstado)
+                this.vista1.GetBotonG.style.background = "rgb(0, 255, 0)";
+
+
+                setTimeout(() => {
+                    this.vista1.GetBotonG.style.background = "rgb(100, 190, 100)";
+                }, 150);
+                
                 if (!this.validarPaso(this.vista1.GetBotonG, this.partida1.GetSecuencia[this.con])) {
 
                     this.partida1.modiEstado(false);
-                    console.log(this.partida1.GetEstado)
+                    this.vista1.modalCreate(this.validarTop())
+                    this.registrar();
+                    
+
+
                 } else {
                     
                     this.con++;
@@ -244,7 +257,7 @@ export class controladorPartida {
 
 
                     }
-                    console.log(this.partida1.GetEstado)
+                    
 
 
                 }
@@ -253,11 +266,19 @@ export class controladorPartida {
 
             this.vista1.GetBotonR.addEventListener("click", () => {
                 this.s1.play();
-                console.log(this.partida1.GetEstado)
+                this.vista1.GetBotonR.style.background = "rgb(255, 0, 0)";
+
+                setTimeout(() => {
+
+                    this.vista1.GetBotonR.style.background = "rgb(188, 100, 90)";
+                }, 150);
+                
                 if (!this.validarPaso(this.vista1.GetBotonR, this.partida1.GetSecuencia[this.con])) {
 
                     this.partida1.modiEstado(false);
-                    console.log(this.partida1.GetEstado)
+                    this.vista1.modalCreate(this.validarTop())
+                    this.registrar();
+                    
 
                 } else {
                     this.con++;
@@ -266,17 +287,25 @@ export class controladorPartida {
                         this.con=0;
 
                     }
-                    console.log(this.partida1.GetEstado)
+                    
                 }
 
 
             });
             this.vista1.GetBotonY.addEventListener("click", () => {
                 this.s2.play();
-                console.log(this.partida1.GetEstado)
+                this.vista1.GetBotonY.style.background = "rgb(255, 255, 0)";
+
+                setTimeout(() => {
+
+                    this.vista1.GetBotonY.style.background = "rgb(190, 190, 70)";
+                }, 150);
+                
                 if (!this.validarPaso(this.vista1.GetBotonY, this.partida1.GetSecuencia[this.con])) {
                     this.partida1.modiEstado(false);
-                    console.log(this.partida1.GetEstado)
+                    this.vista1.modalCreate(this.validarTop())
+                    this.registrar();
+                    
 
                 } else {
                     
@@ -286,17 +315,25 @@ export class controladorPartida {
                         this.con=0;
 
                     }
-                    console.log(this.partida1.GetEstado)
+                    
 
                 }
 
             });
             this.vista1.GetBotonB.addEventListener("click", () => {
                 this.s3.play();
-                console.log(this.partida1.GetEstado)
+                this.vista1.GetBotonB.style.background = "rgb(0, 0, 255)";
+
+                setTimeout(() => {
+
+                    this.vista1.GetBotonB.style.background = "rgb(37, 37, 100)";
+                }, 150);
+                
                 if (!this.validarPaso(this.vista1.GetBotonB, this.partida1.GetSecuencia[this.con])) {
                     this.partida1.modiEstado(false);
-                    console.log(this.partida1.GetEstado)
+                    this.vista1.modalCreate(this.validarTop())
+                    this.registrar();
+                    
 
                 } else {
                     this.con++;
@@ -305,7 +342,7 @@ export class controladorPartida {
                         this.con=0;
 
                     }
-                    console.log(this.partida1.GetEstado)
+                    
 
                 }
 
@@ -316,10 +353,56 @@ export class controladorPartida {
 
 
         });
+       
         //this.calSecuencia();
         //this.mostrarSecuencia();
 
 
+    }
+    public guardarlocal(top:puntajeTop, posi:number){
+        //localStorage.clear();
+        
+
+        localStorage.setItem(posi.toString(),JSON.stringify(top));
+        
+
+
+            
+    }
+    public registrar(){
+        let nombre:HTMLInputElement = this.vista1.GetInNam;
+        this.vista1.GetBotonReg.addEventListener("click",()=>{
+            let top1 = new puntajeTop(nombre.value,this.vista1.GetNivel,this.partida1.GetSecuencia.length);
+            this.guardarlocal(top1,this.pos);
+            location.reload();
+        })
+    }
+    public validarTop():boolean{
+        let reto: boolean=false
+        let menor:number=2000
+        let item: number=-1
+        for(let i : number=0;i<localStorage.length;i++){
+            
+            
+            let fila: any= JSON.parse(localStorage.getItem(i.toString())!)
+            
+            let puntajes: number= fila.puntaje
+            if (puntajes<=menor){
+                menor=puntajes;
+                item=i;
+            }
+            
+            
+            
+        }
+        if(this.partida1.GetSecuencia.length>=menor){
+            localStorage.removeItem(item.toString())
+            reto=true;
+        }
+        this.pos=item;
+        console.log(item)
+        return reto;
+        
     }
 
 

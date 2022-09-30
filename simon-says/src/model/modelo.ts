@@ -2,14 +2,16 @@
 
 
 export class puntajeTop{
+    
     public nombre:string;
-    public nivel: number;
-    public puntaje:string;
+    public nivel: string;
+    public puntaje:number;
 
-    constructor (nombre:string, nivel:number, puntaje:string ){
+    constructor (nombre:string, nivel:string, puntaje:number ){
         this.nombre=nombre;
         this.nivel=nivel;
         this.puntaje=puntaje
+        
 
 
     }

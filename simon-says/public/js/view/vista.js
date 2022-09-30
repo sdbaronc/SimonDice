@@ -11,6 +11,13 @@ export class vista {
         this.botonR = this.getElement('#r');
         this.botonY = this.getElement('#y');
         this.botonB = this.getElement('#b');
+        this.modal = this.getElement('.modal');
+        this.nom = this.getElement('#userN');
+        this.botonReg = this.getElement('#btnRegistro');
+        this.botonRefres = this.getElement('#btnreload');
+        this.tabla = this.getElement('.puntos');
+        this.refrescar();
+        this.mostrarPuntajes();
     }
     set SetDisplay(dispaly) {
         this.display = dispaly;
@@ -72,8 +79,44 @@ export class vista {
     get GetBotonB() {
         return this.botonB;
     }
+    set SetBotonReg(botons) {
+        this.botonReg = botons;
+    }
+    get GetBotonReg() {
+        return this.botonReg;
+    }
+    set SetInNam(botons) {
+        this.nom = botons;
+    }
+    get GetInNam() {
+        return this.nom;
+    }
     addToDisplay(content) {
         this.display.innerHTML = '<p>' + content + '</p>';
+    }
+    modalCreate(clasif) {
+        if (clasif) {
+            this.modal.classList.add('modal--show');
+        }
+        else {
+            this.modal.innerHTML = '<div class="clmodal text-center" ><h1>Lo sentimos No Clasificaste Top 10</h1><button id="btnreload">Jugar de nuevo</button></div>';
+            this.modal.classList.add('modal--show');
+        }
+    }
+    refrescar() {
+        this.botonRefres.addEventListener("click", () => {
+            location.reload();
+        });
+    }
+    mostrarPuntajes() {
+        this.tabla.innerHTML += ' <p>Nombre</p> <p>Nivel</p> <p>puntaje</p>';
+        for (let i = 0; i < localStorage.length; i++) {
+            let fila = JSON.parse(localStorage.getItem(i.toString()));
+            let nombre = fila.nombre;
+            let nivel = fila.nivel;
+            let puntajes = fila.puntaje;
+            this.tabla.innerHTML += ' <p>' + nombre + '</p> <p>' + nivel + '</p> <p>' + puntajes + '</p>';
+        }
     }
 }
 /// 1cargar niveles

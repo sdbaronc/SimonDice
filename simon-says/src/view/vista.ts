@@ -10,6 +10,11 @@ export class vista{
     private botonR: any;
     private botonY: any;
     private botonB: any;
+    private modal: any;
+    private nom:any;
+    private botonReg:any
+    private botonRefres: any
+    private tabla :any
 
     constructor() {        
         this.display = this.getElement('.display');
@@ -22,6 +27,14 @@ export class vista{
         this.botonR=this.getElement('#r');
         this.botonY=this.getElement('#y');
         this.botonB=this.getElement('#b');
+        this.modal=this.getElement('.modal');
+        this.nom=this.getElement('#userN');
+        this.botonReg=this.getElement('#btnRegistro');
+        this.botonRefres=this.getElement('#btnreload');
+        this.tabla=this.getElement('.puntos');
+        this.refrescar();
+        this.mostrarPuntajes();
+        
         
         
     }
@@ -102,6 +115,20 @@ export class vista{
     public get GetBotonB() {
         return this.botonB;
     }
+    public set SetBotonReg (botons: HTMLElement) {
+        this.botonReg = botons;
+    }
+
+    public get GetBotonReg() {
+        return this.botonReg;
+    }
+    public set SetInNam (botons: HTMLElement) {
+        this.nom = botons;
+    }
+
+    public get GetInNam() {
+        return this.nom;
+    }
 
 
 
@@ -111,6 +138,48 @@ export class vista{
     public addToDisplay(content: string): void {
         this.display.innerHTML = '<p>'+content+'</p>'
     }
+    public modalCreate(clasif:boolean){
+        if(clasif){
+            
+            this.modal.classList.add('modal--show')
+        }
+        else{
+            this.modal.innerHTML = '<div class="clmodal text-center" ><h1>Lo sentimos No Clasificaste Top 10</h1><button id="btnreload">Jugar de nuevo</button></div>';
+            
+            this.modal.classList.add('modal--show')
+        }
+
+
+        
+
+    }
+    public refrescar(){
+        this.botonRefres.addEventListener("click",()=>{
+            location.reload();
+        })
+
+    }
+    public mostrarPuntajes(){
+        this.tabla.innerHTML +=' <p>Nombre</p> <p>Nivel</p> <p>puntaje</p>'
+        
+        
+                
+        for(let i : number=0;i<localStorage.length;i++){
+            
+            
+            let fila: any= JSON.parse(localStorage.getItem(i.toString())!)
+            let nombre:string = fila.nombre;
+            let nivel : string= fila.nivel;
+            let puntajes: number= fila.puntaje
+            this.tabla.innerHTML +=' <p>'+ nombre+'</p> <p>'+nivel+'</p> <p>'+puntajes+'</p>';
+            
+            
+        }
+        
+        
+    }
+    
+
     
     /*public SelectNivel(nivel:HTMLElement):void{
         
