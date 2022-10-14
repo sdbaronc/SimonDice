@@ -1,0 +1,22 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const controlador_1 = __importDefault(require("../controller/controlador"));
+class BackendRoute {
+    constructor() {
+        this.config = () => {
+            this.router.get('/', this.backendController.index);
+            this.router.get('/puntaje/:id', this.backendController.getPuntaje);
+            this.router.post('/puntaje/', this.backendController.insertPuntaje);
+            this.router.put('/puntaje/', this.backendController.updatePuntaje);
+            this.router.delete('/puntaje/', this.backendController.deletePuntaje);
+        };
+        this.router = (0, express_1.Router)();
+        this.backendController = new controlador_1.default();
+        this.config();
+    }
+}
+exports.default = BackendRoute;
