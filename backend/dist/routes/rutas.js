@@ -10,6 +10,7 @@ class BackendRoute {
         this.config = () => {
             this.router.get('/', this.backendController.index);
             this.router.get('/puntaje/:id', this.backendController.getPuntaje);
+            this.router.get('/puntajes/', this.backendController.AllPuntajes);
             this.router.post('/puntaje/', this.backendController.insertPuntaje);
             this.router.put('/puntaje/', this.backendController.updatePuntaje);
             this.router.delete('/puntaje/', this.backendController.deletePuntaje);

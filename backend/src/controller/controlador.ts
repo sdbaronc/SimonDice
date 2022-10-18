@@ -8,6 +8,10 @@ class BackendController {
     }
 
     public index = (req: Request, res: Response) => res.json({ 'error': 0, 'msg': 'API: node-express-ts' });
+    public AllPuntajes = (req: Request, res: Response) =>{
+        const puntajes=this.model.getPuntajes();
+        return res.send(puntajes);
+    } 
 
     public getPuntaje = (req: Request, res: Response) => {
         const { id } = req.params;

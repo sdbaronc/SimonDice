@@ -7,6 +7,10 @@ const modelo_1 = __importDefault(require("../model/modelo"));
 class BackendController {
     constructor() {
         this.index = (req, res) => res.json({ 'error': 0, 'msg': 'API: node-express-ts' });
+        this.AllPuntajes = (req, res) => {
+            const puntajes = this.model.getPuntajes();
+            return res.send(puntajes);
+        };
         this.getPuntaje = (req, res) => {
             const { id } = req.params;
             const puntaje = this.model.getPuntajeByID(parseInt(id));

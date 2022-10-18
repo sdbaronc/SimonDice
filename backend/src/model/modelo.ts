@@ -8,6 +8,7 @@ class BackendModel {
         // TODO document why this constructor is empty
       }
       public getPuntajeByID = (id: number) => puntajes[--id];
+      public getPuntajes = ()=> puntajes;
 
       public insertPuntaje = (puntaje: Ipuntaje): boolean => {
         console.log(path.join(__dirname, 'db'));
