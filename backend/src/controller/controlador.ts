@@ -38,5 +38,9 @@ class BackendController {
         this.model.deletePuntaje(parseInt(id));
         return res.json({ 'error': 0, 'msg': `API: delete id: ${id}` });
      }
+     public Allorders = (req: Request, res: Response) =>{
+        const puntajes=this.model.ordenar();
+        return res.send(puntajes);
+    } 
 }
 export default BackendController;

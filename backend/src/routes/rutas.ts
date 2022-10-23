@@ -14,9 +14,10 @@ class BackendRoute {
         this.router.get('/', this.backendController.index);
         this.router.get('/puntaje/:id', this.backendController.getPuntaje);
         this.router.get('/puntajes/', this.backendController.AllPuntajes);
-        this.router.post('/puntaje/', this.backendController.insertPuntaje);
-        this.router.put('/puntaje/', this.backendController.updatePuntaje);
-        this.router.delete('/puntaje/', this.backendController.deletePuntaje);
+        this.router.get('/puntajeso/', this.backendController.Allorders);
+        this.router.post('/puntajeI/', this.backendController.insertPuntaje);
+        this.router.put('/puntajeE/', this.backendController.updatePuntaje);
+        this.router.delete('/puntajeD/', this.backendController.deletePuntaje);
     }
 }
 export default BackendRoute;

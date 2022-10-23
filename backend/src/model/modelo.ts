@@ -1,4 +1,4 @@
-import puntajes from "../db/dataBase.json";
+import puntajes from "../db/people.json";
 import { Ipuntaje } from "interface/interfaces";
 import fs from "fs";
 import path from "path";
@@ -8,11 +8,11 @@ class BackendModel {
         // TODO document why this constructor is empty
       }
       public getPuntajeByID = (id: number) => puntajes[--id];
-      public getPuntajes = ()=> puntajes;
+      public getPuntajes = ()=> puntajes; 
 
       public insertPuntaje = (puntaje: Ipuntaje): boolean => {
         console.log(path.join(__dirname, 'db'));
-        let data = fs.readFileSync('dist/db/dataBase.json', 'utf8');
+        let data = fs.readFileSync('dist/db/people.json', 'utf8');
         let puntajeData: Ipuntaje[] = JSON.parse(data);
         puntajeData.push(puntaje);
         data = JSON.stringify(puntajeData);
@@ -31,6 +31,17 @@ class BackendModel {
         console.log('DELETE');
         return true;
     }
+    public ordenar =()=>{
+        let data = fs.readFileSync('dist/db/people.json', 'utf8');
+        console.log(data)
+        let puntajeData: Ipuntaje[] = JSON.parse(data);
+        puntajeData.sort((a,b)=>b["puntaje"]-a["puntaje"]);
+        return puntajeData;
+
+    }
+    
+
+
 
 }
 export default BackendModel;
