@@ -31,7 +31,8 @@ const rutas_1 = __importDefault(require("./routes/rutas"));
 class Server {
     constructor() {
         this.config = () => {
-            this.backend.set('port', 1802);
+            let puerto = process.env.PORT || 1802;
+            this.backend.set('port', puerto);
             this.backend.use((0, express_1.urlencoded)({ extended: true }));
             this.backend.use((0, express_1.json)());
         };

@@ -15,7 +15,11 @@ class Server {
     }
 
     public config = (): void => {
-        this.backend.set('port', 1802);
+        let puerto:any =process.env.PORT||1802;
+        
+        this.backend.set('port', puerto);
+        
+        
         this.backend.use(urlencoded({extended: true}));
         this.backend.use(json());  
     }
